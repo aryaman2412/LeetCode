@@ -1,20 +1,14 @@
 class Solution {
     public int[] replaceElements(int[] arr) {
-        int n=arr.length;
-        int maxValue=0;
+        int n = arr.length;
+        int maxSoFar = -1;
 
+        for (int i = n - 1; i >= 0; i--) {
+            int current = arr[i];
+            arr[i] = maxSoFar;
+            maxSoFar = Math.max(maxSoFar, current);
+        }
 
-       for(int i=0;i<n-1;i++){
-            int j=i+1;
-            while(j<n){
-                maxValue=Math.max(maxValue,arr[j]);
-                j++;
-            }
-            arr[i]=maxValue;
-            maxValue=0;
-
-       } 
-       arr[n-1]=-1;
-       return arr;
+        return arr;
     }
 }
